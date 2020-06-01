@@ -33,7 +33,11 @@ export default class SqlSeries {
         each(self.series, function (ser) {
             let r = [];
             each(ser, function (v) {
-                r.push(v);
+                if (v[0] === '{') {
+                    r.push(JSON.parse(v));
+                } else {
+                    r.push(v);
+                }
             });
             rows.push(r);
         });
